@@ -36,6 +36,14 @@
         .tab-panel.hidden {
             display: none;
         }
+        /* Chart.js container styling for responsiveness */
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -104,42 +112,26 @@
             </div>
         </section>
 
-        <section id="academics" class="py-12 bg-white">
+        <section id="academics" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight text-center">學術成就</h2>
-                <p class="mt-4 max-w-3xl mx-auto text-lg text-gray-600 text-center">
-                    此部分整合了我的學術發表與研究參與。您可以透過下方的圖表了解我歷年學術活動的概況，並點選不同分頁來查看期刊論文、研討會發表及研究計畫的詳細資訊，展現我將臨床經驗轉化為學術貢獻的努力。
-                </p>
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">學術成就</h2>
+                    <p class="mt-4 text-lg text-gray-600">此部分整合了我的學術發表與研究參與。您可以透過下方的圖表了解我歷年學術活動的概況，並點選不同分頁來查看期刊論文、研討會發表及研究計畫的詳細資訊，展現我將臨床經驗轉化為學術貢獻的努力。</p>
+                </div>
 
-                <div class="mt-12 w-full max-w-3xl mx-auto bg-gray-100 p-6 rounded-lg shadow-inner">
-                    <h3 class="text-xl font-bold text-gray-800 mb-4 text-center">歷年學術活動概況</h3>
-                    <div class="flex items-end justify-between h-48 sm:h-64 px-2">
-                        <div class="flex flex-col items-center group cursor-pointer">
-                            <div class="bg-blue-400 w-10 sm:w-12 rounded-t-lg transition-all duration-300 hover:bg-blue-600" style="height: 10%;"></div>
-                            <span class="mt-2 text-sm text-gray-600">2021</span>
-                        </div>
-                        <div class="flex flex-col items-center group cursor-pointer">
-                            <div class="bg-blue-400 w-10 sm:w-12 rounded-t-lg transition-all duration-300 hover:bg-blue-600" style="height: 30%;"></div>
-                            <span class="mt-2 text-sm text-gray-600">2022</span>
-                        </div>
-                        <div class="flex flex-col items-center group cursor-pointer">
-                            <div class="bg-blue-400 w-10 sm:w-12 rounded-t-lg transition-all duration-300 hover:bg-blue-600" style="height: 60%;"></div>
-                            <span class="mt-2 text-sm text-gray-600">2023</span>
-                        </div>
-                        <div class="flex flex-col items-center group cursor-pointer">
-                            <div class="bg-blue-400 w-10 sm:w-12 rounded-t-lg transition-all duration-300 hover:bg-blue-600" style="height: 90%;"></div>
-                            <span class="mt-2 text-sm text-gray-600">2024</span>
-                        </div>
+                <div class="mb-12">
+                    <div class="chart-container">
+                        <canvas id="academicChart"></canvas>
                     </div>
                 </div>
-                
-                <div class="mt-8 flex justify-center space-x-2 sm:space-x-4 border-b border-gray-200">
-                    <a href="#publications" class="tab-btn px-4 py-2 text-gray-600 border-b-2 border-transparent hover:border-blue-500 transition-colors duration-300 active-tab">期刊論文</a>
-                    <a href="#conferences" class="tab-btn px-4 py-2 text-gray-600 border-b-2 border-transparent hover:border-blue-500 transition-colors duration-300">研討會發表</a>
-                    <a href="#research" class="tab-btn px-4 py-2 text-gray-600 border-b-2 border-transparent hover:border-blue-500 transition-colors duration-300">研究計畫</a>
+
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+                    <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-blue-600 text-white" data-tab="publications">期刊論文</button>
+                    <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="conferences">研討會論文</button>
+                    <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="projects">研究計畫</button>
                 </div>
-                
-                <div class="mt-6">
+
+                <div id="tab-content" class="max-w-4xl mx-auto">
                     <div id="publications" class="tab-panel space-y-6">
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <a href="https://doi.org/10.1111/nicc.13230" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-800 hover:text-blue-600 hover:underline transition-colors duration-300">
@@ -154,7 +146,6 @@
                             <p class="mt-2 text-gray-600">戴榮賢、王于嘉、詹効儒 (2022). *彰化護理*, 29(3):113-126.</p>
                         </div>
                     </div>
-                    
                     <div id="conferences" class="tab-panel hidden space-y-6">
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <p class="font-bold text-gray-800">音樂介入縮短加護病房病人譫妄持續時間之成效：系統性回顧與統合分析</p>
@@ -169,8 +160,8 @@
                             <p class="mt-2 text-gray-600">第四十次護理研究論文發表會，國立成功大學醫學院，2024.10.05</p>
                         </div>
                     </div>
-
-                    <div id="research" class="tab-panel hidden space-y-6">
+                    
+                    <div id="projects" class="tab-panel hidden space-y-6">
                         <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                             <p class="font-bold text-gray-800">應用音樂治療改善加護病房病患之譫妄：系統性回顧/統合分析與實證介入措施之發展</p>
                             <p class="mt-2 text-gray-600">個別型研究計畫，DMR-113-126</p>
@@ -180,166 +171,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="academics" class="py-16 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-800">學術成就</h2>
-            <p class="mt-4 text-lg text-gray-600">此部分整合了我的學術發表與研究參與。您可以透過下方的圖表了解我歷年學術活動的概況，並點選不同分頁來查看期刊論文、研討會發表及研究計畫的詳細資訊，展現我將臨床經驗轉化為學術貢獻的努力。</p>
-        </div>
-
-        <div class="mb-12">
-            <div class="chart-container">
-                <canvas id="academicChart"></canvas>
-            </div>
-        </div>
-
-        <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
-            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full transition-colors duration-300 bg-blue-600 text-white" data-tab="publications">期刊論文</button>
-            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="conferences">研討會論文</button>
-            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="projects">研究計畫</button>
-        </div>
-
-        <div id="tab-content" class="max-w-4xl mx-auto">
-            <div id="publications" class="tab-panel space-y-6">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <a href="https://doi.org/10.1111/nicc.13230" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-800 hover:text-blue-600 hover:underline transition-colors duration-300">
-                        Dose-response analysis of music intervention for improving delirium in intensive care unit patients: A systematic review and meta-analysis
-                    </a>
-                    <p class="mt-2 text-gray-600">Dai, R.-S., Wang, T.-H., Chien, S.-Y., & Tzeng, Y.-L.* (2025). *Nursing in Critical Care*, SSCI.</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <a href="https://doi.org/10.6647/CN.202209_29(3).0013" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-800 hover:text-blue-600 hover:underline transition-colors duration-300">
-                        協助一位重度燒燙傷個案返家之護理經驗
-                    </a>
-                    <p class="mt-2 text-gray-600">戴榮賢、王于嘉、詹効儒 (2022). *彰化護理*, 29(3):113-126.</p>
-                </div>
-            </div>
-            <div id="conferences" class="tab-panel hidden space-y-6">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <p class="font-bold text-gray-800">音樂介入縮短加護病房病人譫妄持續時間之成效：系統性回顧與統合分析</p>
-                    <p class="mt-2 text-gray-600">第八屆海峽兩岸暨港澳地區護理論壇暨學術研討會，台北圓山大飯店，2025.11.28-2025.11.29</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <p class="font-bold text-gray-800">提升護理人員執行燒燙傷換藥正確率</p>
-                    <p class="mt-2 text-gray-600">臺灣燒傷暨傷口照護學會年會暨國際學術研討會，臺北榮民總醫院，2025.09.13-2025.09.14</p>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <p class="font-bold text-gray-800">音樂治療對改善加護病房病人譫妄之最佳劑量與類型：系統性回顧與統合分析</p>
-                    <p class="mt-2 text-gray-600">第四十次護理研究論文發表會，國立成功大學醫學院，2024.10.05</p>
-                </div>
-            </div>
-            
-            <div id="projects" class="tab-panel hidden space-y-6">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
-                    <p class="font-bold text-gray-800">應用音樂治療改善加護病房病患之譫妄：系統性回顧/統合分析與實證介入措施之發展</p>
-                    <p class="mt-2 text-gray-600">個別型研究計畫，DMR-113-126</p>
-                    <p class="mt-1 text-sm text-gray-500">角色：共同主持人 | 時間：2023.8.1 - 2024.7.31</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-            const ctx = document.getElementById('academicChart').getContext('2d');
-            const academicData = {
-                '2022': { pubs: 1, confs: 0, projects: 0 },
-                '2023': { pubs: 0, confs: 0, projects: 1 },
-                '2024': { pubs: 0, confs: 1, projects: 0 },
-                '2025': { pubs: 1, confs: 2, projects: 0 }
-            };
-
-            const labels = Object.keys(academicData);
-            const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
-
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: '年度學術活動數量',
-                        data: data,
-                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
-                        borderColor: 'rgba(59, 130, 246, 1)',
-                        borderWidth: 1
-                    }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            stepSize: 1
-                        },
-                        title: {
-                            display: true,
-                            text: '活動數量'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: '年份'
-                        }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) {
-                                    label += ': ';
-                                }
-                                if (context.parsed.y !== null) {
-                                    label += context.parsed.y;
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                }
-            }
-         });
-    </script>
-</body>
-</html>
-
-        // 分頁功能
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabPanels = document.querySelectorAll('.tab-panel');
-
-        function showTab(tabId) {
-            tabPanels.forEach(panel => {
-                panel.classList.add('hidden');
-            });
-            document.querySelector(tabId).classList.remove('hidden');
-
-            tabButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white');
-                btn.classList.add('bg-gray-200', 'text-gray-700');
-            });
-            document.querySelector(`[data-tab="${tabId.substring(1)}"]`).classList.add('bg-blue-600', 'text-white');
-            document.querySelector(`[data-tab="${tabId.substring(1)}"]`).classList.remove('bg-gray-200', 'text-gray-700');
-        }
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tabId = '#' + this.getAttribute('data-tab');
-                showTab(tabId);
-            });
-        });
-
-        // 預設顯示第一個分頁
-        showTab('#publications');
-    });
-</script>
 
         <section id="credentials" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -379,7 +210,7 @@
             <div class="mt-6 flex flex-col items-center space-y-4">
                 <a href="javascript:void(0);" onclick="copyEmail(event, '032591@tool.caaumed.org.tw');" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10 mr-2 text-gray-700">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.911A2.25 2.25 0 012.25 6.75V6.75"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.911A2.25 2.25 0 012.25 6.75V6.75"/>
                     </svg>
                     <span class="text-xl md:text-2xl font-semibold">032591@tool.caaumed.org.tw</span>
                 </a>
@@ -401,7 +232,8 @@
             <p>&copy; 2025 戴榮賢 Rong-Sian Dai | 專業履歷</p>
         </div>
     </footer>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Smooth scroll for nav links
@@ -424,37 +256,106 @@
                 tabPanels.forEach(panel => {
                     panel.classList.add('hidden');
                 });
-                document.querySelector(tabId).classList.remove('hidden');
+                document.getElementById(tabId).classList.remove('hidden');
 
                 tabButtons.forEach(btn => {
-                    btn.classList.remove('active-tab');
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
                 });
-                document.querySelector(`a[href="${tabId}"]`).classList.add('active-tab');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('bg-blue-600', 'text-white');
+                document.querySelector(`[data-tab="${tabId}"]`).classList.remove('bg-gray-200', 'text-gray-700');
             }
 
             tabButtons.forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.preventDefault();
-                    const tabId = this.getAttribute('href');
+                    const tabId = this.getAttribute('data-tab');
                     showTab(tabId);
                 });
             });
 
-            // Show the initial tab
-            showTab('#publications');
-        });
+            // Set up initial tab state
+            showTab('publications');
 
-        // Email copy function
-        function copyEmail(event, email) {
-            event.preventDefault();
-            navigator.clipboard.writeText(email)
-                .then(() => {
-                    alert('信箱已複製到剪貼簿！');
-                })
-                .catch(err => {
-                    alert('複製失敗，請手動複製信箱。');
-                });
-        }
+            // Bar chart for academic data
+            const ctx = document.getElementById('academicChart').getContext('2d');
+            const academicData = {
+                '2022': { pubs: 1, confs: 0, projects: 0 },
+                '2023': { pubs: 0, confs: 0, projects: 1 },
+                '2024': { pubs: 0, confs: 1, projects: 0 },
+                '2025': { pubs: 1, confs: 2, projects: 0 }
+            };
+
+            const labels = Object.keys(academicData);
+            const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '年度學術活動數量',
+                        data: data,
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: '活動數量'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '年份'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Email copy function
+            function copyEmail(event, email) {
+                event.preventDefault();
+                navigator.clipboard.writeText(email)
+                    .then(() => {
+                        alert('信箱已複製到剪貼簿！');
+                    })
+                    .catch(err => {
+                        alert('複製失敗，請手動複製信箱。');
+                    });
+            }
+        });
     </script>
 </body>
 </html>
