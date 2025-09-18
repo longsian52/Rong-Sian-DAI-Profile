@@ -74,7 +74,7 @@
 <header id="hero" class="py-20 bg-white">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="mb-8">
-            <img src="my_avatar.jpg" alt="戴榮賢大頭貼" class="w-36 h-36 rounded-full mx-auto object-cover shadow-lg border-4 border-blue-100">
+            <img src="my_avatar.jpg" alt="戴榮賢大頭貼" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto object-cover shadow-lg border-4 border-blue-100">
         </div>
         
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">戴榮賢 Rong-Sian Dai</h1>
@@ -244,14 +244,14 @@
         </section>
       </main>
 
-   <section id="contact" class="py-12 bg-gray-100">
+<section id="contact" class="py-12 bg-gray-100">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">合作與聯絡</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">學術合作與聯絡</h2>
         <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
             若您對我的研究領域、臨床經驗或任何形式的學術合作感興趣，歡迎透過以下方式與我聯繫。
         </p>
         <div class="mt-6 flex flex-col items-center space-y-4">
-            <a href="mailto:032591@tool.caaumed.org.tw" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out">
+            <a href="javascript:void(0);" onclick="copyEmail(event, '032591@tool.caaumed.org.tw');" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 ease-in-out">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 md:w-10 md:h-10 mr-2 text-gray-700">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.911A2.25 2.25 0 012.25 6.75V6.75"/>
                 </svg>
@@ -403,6 +403,17 @@
                 }
             });
         });
-    </script>
+   <script>
+    function copyEmail(event, email) {
+        event.preventDefault();
+        navigator.clipboard.writeText(email)
+            .then(() => {
+                alert('信箱已複製到剪貼簿！');
+            })
+            .catch(err => {
+                alert('複製失敗，請手動複製信箱。');
+            });
+    }
+</script>
 </body>
 </html>
