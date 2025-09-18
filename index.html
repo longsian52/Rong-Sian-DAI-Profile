@@ -181,44 +181,171 @@
             </div>
         </section>
 
-        <section id="career" class="py-16">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-bold text-gray-800">臨床歷程</h2>
-                    <p class="mt-4 text-lg text-gray-600">這條時間軸記錄了我在中國醫藥大學附設醫院的職業發展軌跡。從外科加護病房到燒傷中心小組長，每一步都代表著我專業技能的深化與責任的增長，也體現了我對重症護理領域的持續投入與熱忱。</p>
+        <section id="academics" class="py-16 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800">學術成就</h2>
+            <p class="mt-4 text-lg text-gray-600">此部分整合了我的學術發表與研究參與。您可以透過下方的圖表了解我歷年學術活動的概況，並點選不同分頁來查看期刊論文、研討會發表及研究計畫的詳細資訊，展現我將臨床經驗轉化為學術貢獻的努力。</p>
+        </div>
+
+        <div class="mb-12">
+            <div class="chart-container">
+                <canvas id="academicChart"></canvas>
+            </div>
+        </div>
+
+        <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full transition-colors duration-300 bg-blue-600 text-white" data-tab="publications">期刊論文</button>
+            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="conferences">研討會論文</button>
+            <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="projects">研究計畫</button>
+        </div>
+
+        <div id="tab-content" class="max-w-4xl mx-auto">
+            <div id="publications" class="tab-panel space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <a href="https://doi.org/10.1111/nicc.13230" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-800 hover:text-blue-600 hover:underline transition-colors duration-300">
+                        Dose-response analysis of music intervention for improving delirium in intensive care unit patients: A systematic review and meta-analysis
+                    </a>
+                    <p class="mt-2 text-gray-600">Dai, R.-S., Wang, T.-H., Chien, S.-Y., & Tzeng, Y.-L.* (2025). *Nursing in Critical Care*, SSCI.</p>
                 </div>
-                <div class="relative max-w-2xl mx-auto">
-                    <div class="absolute left-1/2 w-0.5 h-full bg-gray-300 transform -translate-x-1/2"></div>
-                    <div class="space-y-12">
-                        <div class="relative timeline-item">
-                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
-                            <div class="ml-auto md:ml-0 md:w-5/12 p-4 bg-white rounded-lg shadow-md md:ml-[58.333%]">
-                                <h3 class="text-lg font-bold text-blue-600">中國醫藥大學附設醫院燒傷中心 小組長</h3>
-                                <p class="text-sm text-gray-500">2025.09 - 至今</p>
-                            </div>
-                        </div>
-                        <div class="relative timeline-item">
-                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
-                            <div class="md:w-5/12 p-4 bg-white rounded-lg shadow-md">
-                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院燒傷中心 護理師</h3>
-                            </div>
-                        </div>
-                        <div class="relative timeline-item">
-                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
-                            <div class="ml-auto md:ml-0 md:w-5/12 p-4 bg-white rounded-lg shadow-md md:ml-[58.333%]">
-                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院腦中風暨神經重症加護病房 護理師</h3>
-                            </div>
-                        </div>
-                        <div class="relative timeline-item">
-                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
-                            <div class="md:w-5/12 p-4 bg-white rounded-lg shadow-md">
-                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院外科加護病房 護理師</h3>
-                            </div>
-                        </div>
-                    </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <a href="https://doi.org/10.6647/CN.202209_29(3).0013" target="_blank" rel="noopener noreferrer" class="font-bold text-gray-800 hover:text-blue-600 hover:underline transition-colors duration-300">
+                        協助一位重度燒燙傷個案返家之護理經驗
+                    </a>
+                    <p class="mt-2 text-gray-600">戴榮賢、王于嘉、詹効儒 (2022). *彰化護理*, 29(3):113-126.</p>
                 </div>
             </div>
-        </section>
+            
+            <div id="conferences" class="tab-panel hidden space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <p class="font-bold text-gray-800">音樂介入縮短加護病房病人譫妄持續時間之成效：系統性回顧與統合分析</p>
+                    <p class="mt-2 text-gray-600">第八屆海峽兩岸暨港澳地區護理論壇暨學術研討會，台北圓山大飯店，2025.11.28-2025.11.29</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <p class="font-bold text-gray-800">提升護理人員執行燒燙傷換藥正確率</p>
+                    <p class="mt-2 text-gray-600">臺灣燒傷暨傷口照護學會年會暨國際學術研討會，臺北榮民總醫院，2025.09.13-2025.09.14</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <p class="font-bold text-gray-800">音樂治療對改善加護病房病人譫妄之最佳劑量與類型：系統性回顧與統合分析</p>
+                    <p class="mt-2 text-gray-600">第四十次護理研究論文發表會，國立成功大學醫學院，2024.10.05</p>
+                </div>
+            </div>
+            
+            <div id="projects" class="tab-panel hidden space-y-6">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <p class="font-bold text-gray-800">應用音樂治療改善加護病房病患之譫妄：系統性回顧/統合分析與實證介入措施之發展</p>
+                    <p class="mt-2 text-gray-600">個別型研究計畫，DMR-113-126</p>
+                    <p class="mt-1 text-sm text-gray-500">角色：共同主持人 | 時間：2023.8.1 - 2024.7.31</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 請確認這段程式碼已經存在於您的檔案中，不需要重複加入
+    // 如果沒有，請在</body>前加入，以確保圖表和分頁功能運作正常
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // ... (其他既有程式碼，例如導航列、複製信箱功能)
+
+        // 學術活動圖表
+        const ctx = document.getElementById('academicChart').getContext('2d');
+        const academicData = {
+            '2022': { pubs: 1, confs: 0, projects: 0 },
+            '2023': { pubs: 0, confs: 0, projects: 1 },
+            '2024': { pubs: 0, confs: 1, projects: 0 },
+            '2025': { pubs: 1, confs: 2, projects: 0 }
+        };
+
+        const labels = Object.keys(academicData);
+        const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '年度學術活動數量',
+                    data: data,
+                    backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: '完成活動數量'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '年份'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += context.parsed.y;
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 分頁功能
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabPanels = document.querySelectorAll('.tab-panel');
+
+        function showTab(tabId) {
+            tabPanels.forEach(panel => {
+                panel.classList.add('hidden');
+            });
+            document.querySelector(tabId).classList.remove('hidden');
+
+            tabButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            document.querySelector(`[data-tab="${tabId.substring(1)}"]`).classList.add('bg-blue-600', 'text-white');
+            document.querySelector(`[data-tab="${tabId.substring(1)}"]`).classList.remove('bg-gray-200', 'text-gray-700');
+        }
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const tabId = '#' + this.getAttribute('data-tab');
+                showTab(tabId);
+            });
+        });
+
+        // 預設顯示第一個分頁
+        showTab('#publications');
+    });
+</script>
 
         <section id="credentials" class="py-16 bg-white">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
