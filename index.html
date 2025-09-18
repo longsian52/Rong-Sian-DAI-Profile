@@ -215,7 +215,6 @@
                     <p class="mt-2 text-gray-600">戴榮賢、王于嘉、詹効儒 (2022). *彰化護理*, 29(3):113-126.</p>
                 </div>
             </div>
-            
             <div id="conferences" class="tab-panel hidden space-y-6">
                 <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
                     <p class="font-bold text-gray-800">音樂介入縮短加護病房病人譫妄持續時間之成效：系統性回顧與統合分析</p>
@@ -242,36 +241,28 @@
     </div>
 </section>
 
-<script>
-    // 請確認這段程式碼已經存在於您的檔案中，不需要重複加入
-    // 如果沒有，請在</body>前加入，以確保圖表和分頁功能運作正常
+            const ctx = document.getElementById('academicChart').getContext('2d');
+            const academicData = {
+                '2022': { pubs: 1, confs: 0, projects: 0 },
+                '2023': { pubs: 0, confs: 0, projects: 1 },
+                '2024': { pubs: 0, confs: 1, projects: 0 },
+                '2025': { pubs: 1, confs: 2, projects: 0 }
+            };
 
-    document.addEventListener('DOMContentLoaded', () => {
-        // ... (其他既有程式碼，例如導航列、複製信箱功能)
+            const labels = Object.keys(academicData);
+            const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
 
-        // 學術活動圖表
-        const ctx = document.getElementById('academicChart').getContext('2d');
-        const academicData = {
-            '2022': { pubs: 1, confs: 0, projects: 0 },
-            '2023': { pubs: 0, confs: 0, projects: 1 },
-            '2024': { pubs: 0, confs: 1, projects: 0 },
-            '2025': { pubs: 1, confs: 2, projects: 0 }
-        };
-
-        const labels = Object.keys(academicData);
-        const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: '年度學術活動數量',
-                    data: data,
-                    backgroundColor: 'rgba(59, 130, 246, 0.5)',
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    borderWidth: 1
-                }]
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '年度學術活動數量',
+                        data: data,
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
             },
             options: {
                 responsive: true,
@@ -284,7 +275,7 @@
                         },
                         title: {
                             display: true,
-                            text: '完成活動數量'
+                            text: '活動數量'
                         }
                     },
                     x: {
@@ -314,7 +305,10 @@
                     }
                 }
             }
-        });
+         });
+    </script>
+</body>
+</html>
 
         // 分頁功能
         const tabButtons = document.querySelectorAll('.tab-btn');
