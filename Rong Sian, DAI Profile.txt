@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>戴榮賢 | 護理專業履歷</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Professional (Off-white, Dark Gray, Muted Blue Accent) -->
+    <!-- Application Structure Plan: A single-page, scrolling interactive resume with a sticky navigation bar (Overview, Academics, Career, Credentials). This structure is more engaging than a static document. It uses a visual timeline for career progression and a tabbed, chart-supported section for academic work, allowing users to quickly grasp key achievements and explore details without being overwhelmed. This design prioritizes scannability for recruiters and deep-dives for academic peers. -->
+    <!-- Visualization & Content Choices: 1. Career History -> Goal: Show Change -> Viz: Vertical Timeline (HTML/CSS) -> Interaction: Hover highlight -> Justification: More visually engaging than a list, clearly shows career progression. 2. Academic Output -> Goal: Organize & Compare -> Viz: Bar Chart (Chart.js) showing activities per year, plus a tabbed interface (HTML/JS) for details -> Interaction: Chart tooltips, tab switching -> Justification: Chart provides a quick quantitative overview of productivity. Tabs organize dense information, preventing cognitive overload. No SVG/Mermaid used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8f7f4;
+            color: #333;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+        .timeline-item:hover .timeline-dot {
+            transform: scale(1.2);
+            background-color: #3b82f6;
+        }
+        .tab-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="scroll-smooth">
+
+    <nav id="navbar" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#hero" class="text-xl font-bold text-gray-800">戴榮賢</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#overview" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">專業總覽</a>
+                        <a href="#academics" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">學術成就</a>
+                        <a href="#career" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">臨床歷程</a>
+                        <a href="#credentials" class="nav-link text-gray-600 px-3 py-2 text-sm font-medium border-b-2 border-transparent">專業認證</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">戴榮賢 Rong-Sian Dai</h1>
+            <p class="mt-4 text-xl md:text-2xl text-blue-600 font-semibold">重症護理專家 | 燒傷中心小組長</p>
+            <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-600">
+                我是一名擁有超過五年經驗、具備高度同理心與專業知識的護理師，專精於重症、外科及燒燙傷照護。憑藉在中國醫藥大學附設醫院的深厚資歷，我不僅在臨床上致力於提升病人福祉，更積極投入學術研究與跨專業團隊合作。我的目標是透過實證照護與團隊合作，為病人提供最高品質的健康服務。
+            </p>
+        </div>
+    </header>
+
+    <main>
+        <section id="overview" class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">專業總覽</h2>
+                    <p class="mt-4 text-lg text-gray-600">本區塊將我的專業能力與成就進行量化展示，讓您快速了解我的核心價值與領導經驗。透過這些關鍵指標，您可以洞悉我在臨床實務、學術研究及教學領域的綜合表現。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-blue-500 text-4xl mb-3">🏆</div>
+                        <h3 class="text-xl font-bold text-gray-800">傑出學術成就</h3>
+                        <p class="mt-2 text-gray-600">榮獲臺灣燒傷暨傷口照護學會「海報論文發表第一名」等重要獎項。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-blue-500 text-4xl mb-3">👥</div>
+                        <h3 class="text-xl font-bold text-gray-800">臨床領導經驗</h3>
+                        <p class="mt-2 text-gray-600">現任中國醫藥大學附設醫院燒傷中心小組長，帶領團隊提升照護品質。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-blue-500 text-4xl mb-3">🔬</div>
+                        <h3 class="text-xl font-bold text-gray-800">研究專長</h3>
+                        <p class="mt-2 text-gray-600">具備系統性回顧與統合分析能力，研究成果發表於國際SSCI期刊。</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md text-center transform hover:scale-105 transition-transform duration-300">
+                        <div class="text-blue-500 text-4xl mb-3">🧑‍🏫</div>
+                        <h3 class="text-xl font-bold text-gray-800">臨床教學認證</h3>
+                        <p class="mt-2 text-gray-600">獲臨床醫事人員培訓計畫認證教師資格，致力於護理人才培育。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="academics" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">學術成就</h2>
+                    <p class="mt-4 text-lg text-gray-600">此部分整合了我的學術發表與研究參與。您可以透過下方的圖表了解我歷年學術活動的概況，並點選不同分頁來查看期刊論文、研討會發表及研究計畫的詳細資訊，展現我將臨床經驗轉化為學術貢獻的努力。</p>
+                </div>
+
+                <div class="mb-12">
+                    <div class="chart-container">
+                        <canvas id="academicChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-2 md:space-x-4 mb-8">
+                    <button class="tab-btn active px-4 py-2 text-sm md:text-base font-semibold rounded-full transition-colors duration-300" data-tab="publications">期刊論文</button>
+                    <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="conferences">研討會論文</button>
+                    <button class="tab-btn px-4 py-2 text-sm md:text-base font-semibold rounded-full bg-gray-200 text-gray-700 transition-colors duration-300" data-tab="projects">研究計畫</button>
+                </div>
+
+                <div id="tab-content" class="max-w-4xl mx-auto">
+                    <div id="publications" class="tab-panel space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-gray-800">Dose-response analysis of music intervention for improving delirium in intensive care unit patients: A systematic review and meta-analysis</p>
+                            <p class="mt-2 text-gray-600">Dai, R.-S., Wang, T.-H., Chien, S.-Y., & Tzeng, Y.-L.* (2025). *Nursing in Critical Care*, SSCI.</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-gray-800">協助一位重度燒燙傷個案返家之護理經驗</p>
+                            <p class="mt-2 text-gray-600">戴榮賢、王于嘉、詹効儒 (2022). *彰化護理*, 29(3):113-126.</p>
+                        </div>
+                    </div>
+                    <div id="conferences" class="tab-panel hidden space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-gray-800">音樂介入縮短加護病房病人譫妄持續時間之成效：系統性回顧與統合分析</p>
+                            <p class="mt-2 text-gray-600">第八屆海峽兩岸暨港澳地區護理論壇暨學術研討會，台北圓山大飯店，2025.11.28-2025.11.29</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-gray-800">提升護理人員執行燒燙傷換藥正確率</p>
+                            <p class="mt-2 text-gray-600">臺灣燒傷暨傷口照護學會年會暨國際學術研討會，臺北榮民總醫院，2025.09.13-2025.09.14</p>
+                        </div>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                            <p class="font-bold text-gray-800">音樂治療對改善加護病房病人譫妄之最佳劑量與類型：系統性回顧與統合分析</p>
+                            <p class="mt-2 text-gray-600">第四十次護理研究論文發表會，國立成功大學醫學院，2024.10.05</p>
+                        </div>
+                    </div>
+                    <div id="projects" class="tab-panel hidden space-y-6">
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                             <p class="font-bold text-gray-800">應用音樂治療改善加護病房病患之譫妄：系統性回顧/統合分析與實證介入措施之發展</p>
+                            <p class="mt-2 text-gray-600">個別型研究計畫，DMR-113-126</p>
+                            <p class="mt-1 text-sm text-gray-500">角色：共同主持人 | 時間：2023.8.1 - 2024.7.31</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="career" class="py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">臨床歷程</h2>
+                    <p class="mt-4 text-lg text-gray-600">這條時間軸記錄了我在中國醫藥大學附設醫院的職業發展軌跡。從外科加護病房到燒傷中心小組長，每一步都代表著我專業技能的深化與責任的增長，也體現了我對重症護理領域的持續投入與熱忱。</p>
+                </div>
+                <div class="relative max-w-2xl mx-auto">
+                    <div class="absolute left-1/2 w-0.5 h-full bg-gray-300 transform -translate-x-1/2"></div>
+                    <div class="space-y-12">
+                        <div class="relative timeline-item">
+                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
+                            <div class="ml-auto md:ml-0 md:w-5/12 p-4 bg-white rounded-lg shadow-md md:ml-[58.333%]">
+                                <h3 class="text-lg font-bold text-blue-600">中國醫藥大學附設醫院燒傷中心 小組長</h3>
+                                <p class="text-sm text-gray-500">2025.09 - 至今</p>
+                            </div>
+                        </div>
+                        <div class="relative timeline-item">
+                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
+                            <div class="md:w-5/12 p-4 bg-white rounded-lg shadow-md">
+                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院燒傷中心 護理師</h3>
+                            </div>
+                        </div>
+                        <div class="relative timeline-item">
+                            <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
+                            <div class="ml-auto md:ml-0 md:w-5/12 p-4 bg-white rounded-lg shadow-md md:ml-[58.333%]">
+                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院腦中風暨神經重症加護病房 護理師</h3>
+                            </div>
+                        </div>
+                        <div class="relative timeline-item">
+                             <div class="timeline-dot absolute w-4 h-4 bg-gray-300 rounded-full mt-3 left-1/2 transform -translate-x-1/2 transition-transform duration-300"></div>
+                            <div class="md:w-5/12 p-4 bg-white rounded-lg shadow-md">
+                                <h3 class="text-lg font-bold text-gray-800">中國醫藥大學附設醫院外科加護病房 護理師</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="credentials" class="py-16 bg-white">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800">專業認證與獲獎事蹟</h2>
+                     <p class="mt-4 text-lg text-gray-600">以下的證照與獎項，是我在專業領域持續學習與追求卓越的證明。它們不僅代表著我具備的專業技能，也反映了同儕與學會對我工作的肯定。</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">專業證照與認證</h3>
+                        <ul class="space-y-4">
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-blue-500 mr-3 text-2xl">📜</span>臨床醫事人員培訓計畫認證教師（護理職類別）</li>
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-blue-500 mr-3 text-2xl">📜</span>高級燒傷急救照護合格證書</li>
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-blue-500 mr-3 text-2xl">📜</span>專業傷口照護訓練課程合格證書</li>
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-blue-500 mr-3 text-2xl">📜</span>成人加護訓練結訓證書</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold mb-6 text-center text-gray-700">獲獎事蹟</h3>
+                        <ul class="space-y-4">
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-yellow-500 mr-3 text-2xl">🥇</span>2025年 臺灣燒傷暨傷口照護學會「海報論文發表第一名」</li>
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-yellow-500 mr-3 text-2xl">🏅</span>2024年 台灣護理學會「優良護理研究海報論文發表獎」</li>
+                            <li class="bg-gray-50 p-4 rounded-lg flex items-center shadow-sm"><span class="text-yellow-500 mr-3 text-2xl">🏅</span>2022年 台中市護理師護士公會優良護理人員</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p>&copy; 2025 戴榮賢 Rong-Sian Dai | 專業履歷</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            const tabs = document.querySelectorAll('.tab-btn');
+            const panels = document.querySelectorAll('.tab-panel');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(item => {
+                        item.classList.remove('active', 'bg-blue-600', 'text-white');
+                        item.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    tab.classList.add('active', 'bg-blue-600', 'text-white');
+                    tab.classList.remove('bg-gray-200', 'text-gray-700');
+
+                    const target = tab.getAttribute('data-tab');
+                    panels.forEach(panel => {
+                        if (panel.id === target) {
+                            panel.classList.remove('hidden');
+                        } else {
+                            panel.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const ctx = document.getElementById('academicChart').getContext('2d');
+            const academicData = {
+                '2022': { pubs: 1, confs: 0, projects: 0 },
+                '2023': { pubs: 0, confs: 0, projects: 1 },
+                '2024': { pubs: 0, confs: 1, projects: 0 },
+                '2025': { pubs: 1, confs: 2, projects: 0 }
+            };
+
+            const labels = Object.keys(academicData);
+            const data = labels.map(year => academicData[year].pubs + academicData[year].confs + academicData[year].projects);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '年度學術活動數量',
+                        data: data,
+                        backgroundColor: 'rgba(59, 130, 246, 0.5)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            title: {
+                                display: true,
+                                text: '活動數量'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: '年份'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
